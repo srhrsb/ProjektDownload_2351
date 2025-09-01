@@ -8,13 +8,22 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class App extends Application {
+
+    private static Stage currentStage;
     @Override
     public void start(Stage stage) throws IOException {
+
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 530, 200);
         stage.setTitle("Downloader");
         stage.setScene(scene);
         stage.show();
+        App.currentStage = stage;
+    }
+
+
+    public static Stage getStage(){
+        return currentStage;
     }
 
     public static void main(String[] args) {
