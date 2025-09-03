@@ -3,7 +3,7 @@ package com.brh.projektdownload_2351;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-public class Download{
+public class Download implements Runnable{
     private String link;
     private String target;
     private File outputFile;
@@ -12,7 +12,7 @@ public class Download{
         this.target = target;
 
     }
-    public void execute(){
+    public void run(){
         try{
             URL url = new URL(link);
 
@@ -32,6 +32,7 @@ public class Download{
 
             //Outputstream mit Ziel
             OutputStream outputStream = new FileOutputStream(outputFile);
+
             BufferedOutputStream buffOutputStream =
                     new BufferedOutputStream( outputStream , 1024);
 
@@ -39,10 +40,10 @@ public class Download{
             int downloaded = 0;
             int readByte = 0;
 
-            while((readByte = buffInputStream.read(buffer, 0, 1024)) >= 0){
+            while( (readByte = buffInputStream.read(buffer, 0, 1024) ) >= 0 ){
                 buffOutputStream.write(buffer, 0, readByte);
                 downloaded += readByte;
-                System.out.println("Runtergeladen: "+downloaded);
+                System.out.println("Runtergeladen ( "+this+")" +downloaded);
             }
 
             buffOutputStream.close();

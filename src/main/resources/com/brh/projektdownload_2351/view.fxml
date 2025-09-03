@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="200.0" prefWidth="550.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.brh.projektdownload_2351.Controller">
+<VBox alignment="TOP_CENTER" prefHeight="381.0" prefWidth="550.0" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.brh.projektdownload_2351.Controller">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-   <HBox prefHeight="36.0" prefWidth="502.0">
+   <HBox prefHeight="233.0" prefWidth="510.0">
       <children>
-         <Label prefHeight="41.0" prefWidth="123.0" text="Url eingeben:" />
-         <TextField fx:id="urlTf" prefHeight="38.0" prefWidth="380.0" />
+         <Button mnemonicParsing="false" onAction="#addUrlTf" prefHeight="26.0" prefWidth="118.0" text="+ Download" />
+         <VBox fx:id="urlContainer" prefHeight="188.0" prefWidth="412.0" style="-fx-background-color: aliceblue;" />
       </children>
    </HBox>
    <HBox layoutX="30.0" layoutY="78.0" prefHeight="36.0" prefWidth="502.0">
