@@ -16,7 +16,6 @@ public class Controller {
     private VBox urlContainer;
     @FXML
     private TextField targetTf;
-
     private ArrayList<TextField> urlList = new ArrayList<>();
 
 
@@ -36,34 +35,21 @@ public class Controller {
 
     @FXML
     protected void addUrlTf(){
-
         VBox container = urlContainer;
         TextField tf = new TextField();
         container.getChildren().add( tf );
-
-        //ToDo: tf zur Liste hinzufügen
         urlList.add(tf);
-
     }
-
-
-
-
 
 
     @FXML
     protected void onClickDownload() {
-//          String path = urlTf.getText();
           String target = targetTf.getText();
-
-          //ToDo: Liste durchlaufen und für jeden Eintrag die URL holen
-          //ToDo: und eine Download starten
 
           for( TextField tf : urlList ){
               String url = tf.getText();
               Download download = new Download(url, target);
               new Thread( download).start();
           }
-
     }
 }

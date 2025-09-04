@@ -10,8 +10,8 @@ public class Download implements Runnable{
     public Download(String link, String target ) {
         this.link = link;
         this.target = target;
-
     }
+
     public void run(){
         try{
             URL url = new URL(link);
