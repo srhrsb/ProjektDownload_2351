@@ -12,7 +12,7 @@
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-   <HBox prefHeight="233.0" prefWidth="510.0">
+   <HBox prefHeight="233.0" prefWidth="510.0" spacing="20.0">
       <children>
          <Button mnemonicParsing="false" onAction="#addUrlTf" prefHeight="26.0" prefWidth="118.0" text="+ Download" />
          <VBox fx:id="urlContainer" prefHeight="188.0" prefWidth="412.0" style="-fx-background-color: aliceblue;" />

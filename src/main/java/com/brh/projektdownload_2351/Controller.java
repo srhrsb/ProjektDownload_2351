@@ -41,7 +41,6 @@ public class Controller {
         urlList.add(tf);
     }
 
-
     @FXML
     protected void onClickDownload() {
           String target = targetTf.getText();
