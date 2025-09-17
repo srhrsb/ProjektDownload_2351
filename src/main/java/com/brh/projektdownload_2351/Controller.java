@@ -1,5 +1,6 @@
 package com.brh.projektdownload_2351;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -57,14 +58,12 @@ public class Controller {
      */
     @FXML
     protected void onClickDownload() {
-         //Test der Methode
-          addBytesToProgressDisplay(5000);
 
           String target = targetTf.getText();
 
           for( TextField tf : urlList ){
               String url = tf.getText();
-              Download download = new Download(url, target);
+              Download download = new Download(url, target, this::addBytesToProgressDisplay);
               new Thread( download).start();
           }
     }
@@ -77,7 +76,17 @@ public class Controller {
     private void addBytesToProgressDisplay( int bytes ){
 
         totalProgress += bytes;
-        progressLabel.setText("runtergeladen: "+ totalProgress + " Bytes");
+
+        //Im Thread des Downloads (kein JavaFX-Thread)
+        // kann die Nutzeroberfläche
+        // nicht direkt geändert werden, daher erfolgt die
+        //Weitergabe an JavaFX
+        Platform.runLater(
+                () -> {
+                    progressLabel.setText("runtergeladen: "+ totalProgress + " Bytes");
+                }
+        );
+
 
     }
 

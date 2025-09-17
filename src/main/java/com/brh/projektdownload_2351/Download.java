@@ -7,13 +7,21 @@ public class Download implements Runnable{
     private String link;
     private String target;
     private File outputFile;
-    public Download(String link, String target ) {
+    private Action progressCallback;
+
+    public Download(String link, String target, Action<Integer> progressCallback ) {
         this.link = link;
         this.target = target;
+        this.progressCallback = progressCallback;
+
     }
 
     public void run(){
         try{
+
+
+
+
             URL url = new URL(link);
 
             //öffnen der Verbindung
@@ -26,6 +34,12 @@ public class Download implements Runnable{
 
             //File Objekt um Dateinamen des Links zu ermitteln
             File file =  new File(link);
+
+            String filename = file.getAbsolutePath();
+
+            if( !filename.contains(".") ){
+                throw new IllegalArgumentException();
+            }
 
             //Ausgabefile mit dem Target-Pfad und übernommenem Dateinamen
             outputFile = new File(target, file.getName());
@@ -43,6 +57,10 @@ public class Download implements Runnable{
             while( (readByte = buffInputStream.read(buffer, 0, 1024) ) >= 0 ){
                 buffOutputStream.write(buffer, 0, readByte);
                 downloaded += readByte;
+
+                //Callback leitet die Anzahl der gerade runtergeladen Bytes an eine Anzeige weiter
+                progressCallback.invoke(readByte); //addBytesToPrgressDisplay( readByte)
+
                 System.out.println("Runtergeladen ( "+this+")" +downloaded);
             }
 
