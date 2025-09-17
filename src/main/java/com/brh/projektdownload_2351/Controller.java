@@ -16,9 +16,16 @@ public class Controller {
     private VBox urlContainer;
     @FXML
     private TextField targetTf;
+    @FXML
+    private Label progressLabel;
+    private int totalProgress;
     private ArrayList<TextField> urlList = new ArrayList<>();
 
-
+    /**
+     * Button Event, wenn Search-Button gedrückt wird,
+     * ruft Auswahl für Dateiordner auf um den Ziel-Pfad
+     * auszuwählen
+     */
     @FXML
     protected void onClickSearch() {
         Stage currentStage = App.getStage();
@@ -33,6 +40,9 @@ public class Controller {
         }
     }
 
+    /**
+     * Fügt ein weiteres Textfeld für einen Download hinzu
+     */
     @FXML
     protected void addUrlTf(){
         VBox container = urlContainer;
@@ -41,8 +51,15 @@ public class Controller {
         urlList.add(tf);
     }
 
+    /**
+     * Download Button gedrückt, Download-Liste wird nacheinander
+     * durchlaufen und entsprechende Downloads werden ausgelöst
+     */
     @FXML
     protected void onClickDownload() {
+         //Test der Methode
+          addBytesToProgressDisplay(5000);
+
           String target = targetTf.getText();
 
           for( TextField tf : urlList ){
@@ -51,4 +68,17 @@ public class Controller {
               new Thread( download).start();
           }
     }
+
+    /**
+     * Zählt die von einem Download gerade geladene Bytes zum Gesamt-
+     * fortschritt hinzu und zeigt den Fortschritt an
+     * @param bytes
+     */
+    private void addBytesToProgressDisplay( int bytes ){
+
+        totalProgress += bytes;
+        progressLabel.setText("runtergeladen: "+ totalProgress + " Bytes");
+
+    }
+
 }
