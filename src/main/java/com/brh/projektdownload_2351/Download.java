@@ -31,12 +31,6 @@ public class Download implements Runnable{
             //File Objekt um Dateinamen des Links zu ermitteln
             File file =  new File(link);
 
-            String filename = file.getAbsolutePath();
-
-            if( !filename.contains(".") ){
-                throw new IllegalArgumentException();
-            }
-
             //Ausgabefile mit dem Target-Pfad und übernommenem Dateinamen
             outputFile = new File(target, file.getName());
 
