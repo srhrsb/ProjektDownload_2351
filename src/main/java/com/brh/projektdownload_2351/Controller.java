@@ -1,9 +1,14 @@
 package com.brh.projektdownload_2351;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
@@ -48,8 +53,22 @@ public class Controller {
     protected void addUrlTf(){
         VBox container = urlContainer;
         TextField tf = new TextField();
-        container.getChildren().add( tf );
+        tf.setPrefWidth(600);
+
+        HBox hbox = new HBox();
+        Button deleteBtn = new Button("X");
+        deleteBtn.setOnAction( this::deleteDownloadPath );
+
+        hbox.getChildren().add( tf );
+        hbox.getChildren().add( deleteBtn );
+
+        container.getChildren().add(hbox);
+
         urlList.add(tf);
+    }
+
+    private void deleteDownloadPath( ActionEvent event){
+        System.out.println("Löschen");
     }
 
     /**
