@@ -18,10 +18,6 @@ public class Download implements Runnable{
 
     public void run(){
         try{
-
-
-
-
             URL url = new URL(link);
 
             //öffnen der Verbindung
