@@ -117,8 +117,6 @@ public class Controller {
                     progressLabel.setText("runtergeladen: "+ totalProgress + " Bytes");
                 }
         );
-
-
     }
 
     @FXML
